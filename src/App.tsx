@@ -4,7 +4,6 @@ import Hero from './components/Hero';
 import ExperienceCounters from './components/ExperienceCounters';
 import Expertise from './components/Expertise';
 import Affiliations from './components/Affiliations';
-import WhyChoose from './components/WhyChoose';
 import Contact from './components/Contact';
 import AboutPage from './components/AboutPage';
 
