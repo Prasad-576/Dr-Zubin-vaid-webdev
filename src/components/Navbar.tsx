@@ -397,6 +397,36 @@ export default function Navbar() {
                   animate="show"
                   className="flex flex-col gap-1 md:gap-2 pb-8"
                 >
+                  {/* Primary Nav Links for Mobile */}
+                  <div className="lg:hidden flex flex-col gap-1 mb-2">
+                    {navLinks.filter(link => link.name !== 'Contact Us').map((link) => {
+                      const isActive = (currentPath === '/about' && link.name === 'About');
+                      return (
+                        <motion.a
+                          key={link.name}
+                          variants={sidebarItemVariants}
+                          href={link.href}
+                          onClick={(e) => {
+                            handleNavLinkClick(e as any, link.href);
+                            setSidebarOpen(false);
+                          }}
+                          whileHover={{ x: 6 }}
+                          className={`group relative flex w-full items-center rounded-2xl px-3 py-3 md:px-4 md:py-4 text-left font-heading text-[0.95rem] sm:text-[1.08rem] transition-all duration-500 ${
+                            isActive
+                              ? 'bg-white/70 text-[#0E2C57] shadow-[0_16px_34px_rgba(35,96,210,0.16)]'
+                              : 'text-[#24436C]/86 hover:bg-white/58 hover:text-[#123866]'
+                          }`}
+                        >
+                          <span className="pointer-events-none absolute left-2 top-1/2 h-8 w-[3px] -translate-y-1/2 rounded-full bg-medical-blue/85 transition-opacity duration-300" style={{ opacity: isActive ? 1 : 0 }} />
+                          <span className="pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-r from-medical-blue/10 via-sky-blue/5 to-transparent opacity-0 blur-xl transition-opacity duration-500 group-hover:opacity-100" />
+                          <span className="relative pl-4 tracking-[0.01em]">{link.name}</span>
+                        </motion.a>
+                      );
+                    })}
+                  </div>
+                  
+                  <div className="lg:hidden h-px w-full bg-medical-blue/10 my-2" />
+
                   {sidebarItems.map((item) => {
                     const isActive = activeItem === item.label;
 
@@ -420,6 +450,13 @@ export default function Navbar() {
                       </motion.button>
                     );
                   })}
+
+                  {/* Mobile CTA */}
+                  <div className="lg:hidden mt-6 mb-4 px-2">
+                    <button className="w-full py-3.5 rounded-xl bg-medical-blue text-white text-[14px] font-medium tracking-wide hover:bg-[#2A65E0] transition-all shadow-[0_4px_15px_rgba(58,123,255,0.25)]">
+                      Book Consultation
+                    </button>
+                  </div>
                 </motion.div>
               </div>
             </motion.aside>

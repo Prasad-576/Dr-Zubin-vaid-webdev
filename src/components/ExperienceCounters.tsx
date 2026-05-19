@@ -9,7 +9,7 @@ const counters = [
 
 function AnimatedNumber({ value }: { value: number }) {
   const ref = useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-100px" });
+  const inView = useInView(ref, { once: true, margin: "-10px" });
   
   const motionValue = useMotionValue(0);
   const springValue = useSpring(motionValue, {
@@ -38,7 +38,7 @@ function AnimatedNumber({ value }: { value: number }) {
 export default function ExperienceCounters() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const isInView = useInView(ref, { once: true, margin: "-10px" });
 
   useEffect(() => {
     let animationFrameId: number;
